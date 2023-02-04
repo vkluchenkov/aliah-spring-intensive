@@ -5,6 +5,7 @@ import styles from './styles.module.css';
 export const Footer: React.FC = () => {
   const { t } = useTranslation();
   const { footer, address, copyright } = styles;
+  const year = new Date().getFullYear();
 
   return (
     <footer className={footer}>
@@ -13,7 +14,7 @@ export const Footer: React.FC = () => {
           {t('address')}: Atlas Tower, al. Jerozolimskie 123, 00&#8209;001 Warsaw
         </Link>
       </p>
-      <p className={copyright}>©2022 Aliah dance team. Created by Vladimir Kluchenkov</p>
+      <p className={copyright}>©{year} Aliah dance team. Created by Vladimir Kluchenkov</p>
     </footer>
   );
 };

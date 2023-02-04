@@ -1,7 +1,7 @@
 import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import styles from '../styles/ThankYou.module.css';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';

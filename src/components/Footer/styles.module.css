@@ -1,5 +1,7 @@
 .footer {
-  padding: 0 10px 15px;
+  padding: 25px 10px 15px;
+  color: var(--text-color);
+  background-color: var(--bright-color);
 }
 
 .address {
@@ -20,7 +22,7 @@
 
 .copyright {
   margin: 0;
-  padding: 44px 0 0;
+  padding: 25px 0 0;
   font-style: normal;
   font-weight: 300;
   font-size: 12px;

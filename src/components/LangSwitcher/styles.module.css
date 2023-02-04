@@ -11,7 +11,7 @@
   font-weight: 300;
   font-size: 14px;
   line-height: 17px;
-  color: black;
+  color: var(--text-color);
   transition: opacity 0.5s;
 }
 

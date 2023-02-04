@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  color: var(--text-color);
 }
 
 .day {
@@ -51,6 +52,11 @@
   font-weight: 500;
 }
 
+.event__teacher {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
 .event__title_indiv {
   margin: -10px 0 0;
 }
@@ -74,7 +80,6 @@
   font-size: 12px;
   line-height: 12px;
   text-align: center;
-  color: #000;
 }
 
 .price__value {

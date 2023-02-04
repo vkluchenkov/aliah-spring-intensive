@@ -1,3 +1,5 @@
+@import url('./theme.css');
+
 html,
 body {
   padding: 0;
@@ -9,6 +11,7 @@ body {
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
+  background-color: var(--dark-color);
 }
 
 ::-webkit-scrollbar {

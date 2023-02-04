@@ -1,22 +1,30 @@
 {
-  "h1": "Ekaterina Oleynikova",
+  "h1": "Ekaterina Oleynikova &\u00a0Polina Ostrovska",
   "h2": "Intensive dance weekend in Warsaw",
-  "priceDate": "01.01.2023",
   "until": "until",
   "after": "after",
   "indiv": "Individual lessons",
   "indivPrice": "1h",
   "hour": "h",
   "ws1": {
-    "time": "13:00-15:00",
-    "title": "Technique and combos",
+    "time": "13:00-14:00",
+    "title": "Orental dance technique for KIDS",
+    "teacher": "Ekaterina Oleynikova",
     "level": "open level"
   },
   "ws2": {
-    "time": "15:30-17:30",
-    "title": "Pop song choreography",
-    "level": "intermediate / advanced level"
+    "time": "14:15-16:15",
+    "title": "Khaligi choreography",
+    "teacher": "Polina Ostrovska",
+    "level": "open level"
   },
+  "ws3": {
+    "time": "16:30-18:30",
+    "title": "Mejance choreography",
+    "teacher": "Ekaterina Oleynikova",
+    "level": "open level"
+  },
+
   "button": "Sign up",
   "address": "Address",
   "form": {
