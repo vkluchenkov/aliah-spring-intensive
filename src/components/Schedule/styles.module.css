@@ -86,23 +86,23 @@
   font-weight: 600;
 }
 
+@media screen and (min-width: 768px) {
+  .day_columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+
+  .section_schedule {
+    gap: 35px;
+    padding: 35px 15px;
+  }
+}
+
 @media screen and (min-width: 1024px) {
   .section_schedule {
     padding: 0;
     margin: 0;
-  }
-
-  .day__wrapper {
-    width: 100%;
-    max-width: 600px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin: 0 auto;
-  }
-
-  .day__event_indiv {
-    grid-column: 1/-1;
   }
 }
 

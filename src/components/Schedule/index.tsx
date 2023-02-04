@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import {
   indivPrice,
   price1,
@@ -15,10 +15,10 @@ export const Schedule: React.FC = () => {
   const {
     section_schedule,
     day,
+    day_columns,
     day__title,
     day__wrapper,
     day__event,
-    day__event_indiv,
     event__text,
     event__time,
     event__teacher,
@@ -33,10 +33,10 @@ export const Schedule: React.FC = () => {
   const changeDateString = changeDate.toLocaleDateString('pl');
 
   return (
-    <section className={clsx(section_schedule)}>
+    <section className={section_schedule}>
       <div className={day}>
         <h3 className={day__title}>05.03.2023</h3>
-        <div className={day__wrapper}>
+        <div className={clsx(day__wrapper, day_columns)}>
           <div className={day__event}>
             <p className={clsx(event__text, event__time)}>{t('ws1.time')}</p>
             <p className={clsx(event__text, event__teacher)}>{t('ws1.teacher')}</p>
@@ -87,7 +87,7 @@ export const Schedule: React.FC = () => {
       <div className={day}>
         <h3 className={day__title}>05–06.03.2023</h3>
         <div className={day__wrapper}>
-          <div className={clsx(day__event, day__event_indiv)}>
+          <div className={day__event}>
             <p className={clsx(event__text, event__title_indiv)}>{t('indiv')}</p>
             <div className={event__price}>
               <p className={price__content}>

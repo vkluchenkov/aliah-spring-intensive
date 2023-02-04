@@ -41,6 +41,7 @@
   margin: 0 auto;
   padding: 0;
   width: 100%;
+  max-width: 520px;
 }
 
 .subTitle {
@@ -78,6 +79,25 @@
 .signupButton:hover {
   background-color: var(--text-color);
   color: var(--dark-color);
+}
+
+@media screen and (min-width: 768px) {
+  .imageContainer {
+    max-width: 620px;
+  }
+
+  .titleContainer {
+    padding: 35px 15px;
+  }
+
+  .title {
+    font-size: 46px;
+    max-width: 650px;
+  }
+
+  .subTitle {
+    font-size: 18px;
+  }
 }
 
 /* @media screen and (min-width: 1024px) {
