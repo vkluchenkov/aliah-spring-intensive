@@ -1,0 +1,46 @@
+{
+  "h1": "Ekaterina Oleynikova",
+  "h2": "Intensive dance weekend in Warsaw",
+  "until": "do",
+  "after": "od",
+  "indiv": "Prywatne zajęcia",
+  "indivPrice": "1 godz",
+  "hour": "godz",
+  "ws1": {
+    "title": "Technika i combinacji",
+    "level": "poziom open – dla wszystkich"
+  },
+  "ws2": {
+    "title": "Pop song choreografia",
+    "level": "sredniozaaw. + zaaw. poziom"
+  },
+  "address": "Adres",
+  "button": "Rejestracja",
+  "form": {
+    "title": "Rejestracja",
+    "wstitle": "Wybierz warsztaty",
+    "name": "Imię i Nazwisko",
+    "indivHours": "Ilość godzin",
+    "paymenttitle": "Opłaty",
+    "bacs": "Przelew na konto",
+    "paypal": "PayPal (prowizja płatnicza 5%)",
+    "stripe": "Stripe (opłata kartą. Prowizja płatnicza 5%)",
+    "total": "Razem",
+    "button": "Wysłać",
+    "button_stripe": " z obowiązkiem opłaty",
+    "oops": "Coś poszło nie tak. Już nad tym pracujemy. Prosimy sprobować później.",
+    "success": "Dziękujemy! Rejestracja została wysłana"
+  },
+  "email": {
+    "subject_user": "Dziękujęmy za rejestracje",
+    "hi": "Witam",
+    "h2": "Otrzymaliśmy Twoje zgloszenie na Intensive dance weekend with Ekaterina Oleynikova.",
+    "order": "Twoje zamowienie:",
+    "bank_title": "Konto:",
+    "payment_message": "Skontaktujemy się z Tobą dalej, gdy potwierdzimy Twoją płatność i rejestrację."
+  },
+  "thankYou": {
+    "title": "Dziękujęmy za rejestracje!",
+    "subtitle": "Skontaktujemy się z Tobą dalej, gdy potwierdzimy Twoją płatność i rejestrację."
+  }
+}

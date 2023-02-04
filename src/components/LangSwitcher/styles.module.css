@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+  padding: 13px 0;
+}
+
+.langItem {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 17px;
+  color: black;
+  transition: opacity 0.5s;
+}
+
+.langItem:hover {
+  opacity: 0.7;
+}
+
+.langItem_current {
+  font-weight: 600;
+  cursor: default;
+}
+
+.langItem_current:hover {
+  opacity: 1;
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    gap: 15px;
+  }
+
+  .langItem {
+    font-size: 18px;
+    line-height: 1.2;
+  }
+}

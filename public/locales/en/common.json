@@ -1,0 +1,54 @@
+{
+  "h1": "Ekaterina Oleynikova",
+  "h2": "Intensive dance weekend in Warsaw",
+  "priceDate": "01.01.2023",
+  "until": "until",
+  "after": "after",
+  "indiv": "Individual lessons",
+  "indivPrice": "1h",
+  "hour": "h",
+  "ws1": {
+    "time": "13:00-15:00",
+    "title": "Technique and combos",
+    "level": "open level"
+  },
+  "ws2": {
+    "time": "15:30-17:30",
+    "title": "Pop song choreography",
+    "level": "intermediate / advanced level"
+  },
+  "button": "Sign up",
+  "address": "Address",
+  "form": {
+    "title": "Registration",
+    "wstitle": "Workshops selection",
+    "name": "Name and Surname",
+    "email": "Email",
+    "indivHours": "How many hours?",
+    "paymenttitle": "Payment method",
+    "bacs": "Bank transfer",
+    "paypal": "PayPal (processing fee 5%)",
+    "stripe": "Stripe (cards and wallets. Processing fee 5%)",
+    "total": "Total",
+    "button": "Submit",
+    "button_stripe": " and pay",
+    "oops": "Something went wrong, we are working on it. Please try again later",
+    "success": "Thank you! Your registration submitted successfully."
+  },
+  "email": {
+    "subject_user": "Thank you for your registration",
+    "hi": "Hi",
+    "h2": "We received your registration to Intensive dance weekend with Ekaterina Oleynikova.",
+    "order": "And here's what you ordered:",
+    "bank_title": "Payment account:",
+    "bank_receiver": "Alla Kluchenkova",
+    "bank_name": "Santander Bank Polska S.A.",
+    "bank_account": "95 1090 1030 0000 0001 3166 3867",
+    "bank_address": "al. Jana Pawła II 17, 00-854 Warsaw",
+    "payment_message": "We will contact you additionally, when we confirm your payment and registration."
+  },
+  "thankYou": {
+    "title": "Thank you for your registration",
+    "subtitle": "We will contact you additionally, when we confirm your payment and registration."
+  }
+}

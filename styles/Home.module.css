@@ -1,0 +1,129 @@
+.pageContainer {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main {
+  width: 100%;
+}
+
+.coverContainer {
+  width: 100%;
+}
+
+.title {
+  display: none;
+}
+
+.subTitle {
+  display: none;
+}
+
+@media screen and (min-width: 1024px) {
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+  }
+
+  .coverContainer {
+    grid-column: 2/-1;
+  }
+
+  .contentContainer {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    padding: 135px 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .title {
+    display: block;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 60px;
+    line-height: 60px;
+    text-align: center;
+    text-transform: uppercase;
+    color: black;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 700px;
+  }
+
+  .subTitle {
+    display: block;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: black;
+    padding: 5px 0 0;
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .title {
+    font-size: 80px;
+    line-height: 80px;
+    max-width: 700px;
+  }
+
+  .subTitle {
+    font-size: 24px;
+    line-height: 26px;
+    padding: 15px 0 0;
+    margin: 0;
+  }
+  .contentContainer {
+    padding: 155px 10px 0;
+    max-height: 1080px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .title {
+    font-size: 80px;
+    line-height: 1;
+    max-width: 700px;
+  }
+
+  .subTitle {
+    font-size: 25px;
+    line-height: 1.2;
+    padding: 15px 0 0;
+    margin: 0;
+  }
+
+  .contentContainer {
+    padding: 200px 10px 0;
+    gap: 35px;
+    max-height: 1400px;
+  }
+}
+
+@media screen and (min-width: 1920px) and (min-height: 1200px) {
+  .title {
+    font-size: 100px;
+  }
+
+  .subTitle {
+    font-size: 30px;
+  }
+
+  .contentContainer {
+    padding: 230px 10px 0;
+    gap: 45px;
+  }
+}

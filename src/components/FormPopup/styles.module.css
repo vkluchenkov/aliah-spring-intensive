@@ -1,0 +1,284 @@
+.form {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 50px 20px 0;
+  z-index: 1;
+}
+
+.form__title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.form__subtitle {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  margin: 0;
+}
+
+.form__wsWrapper {
+  width: 100%;
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form__total {
+  display: block;
+  width: 100%;
+  max-width: 550px;
+  border-top: 1px solid rgb(59, 59, 59);
+  border-bottom: 1px solid rgb(59, 59, 59);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 18px;
+  text-align: center;
+  padding: 7px 0;
+}
+
+.form__submitButton {
+  width: 100%;
+  max-width: 550px;
+  margin: 15px auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: 1px solid black;
+  background-color: white;
+  padding: 10px 15px;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 22px;
+  text-transform: uppercase;
+  color: black;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.form__submitButton:hover {
+  background-color: #000;
+  color: white;
+}
+
+.form__submitButton:disabled {
+  background-color: #eee;
+  color: #999;
+  outline: 1px solid #ccc;
+  cursor: not-allowed;
+}
+
+.form__error {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  color: red;
+  margin: 0;
+  padding: 0;
+}
+
+.form__success {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  color: #00cc00;
+  margin: 0;
+  padding: 0;
+}
+
+.form__closeBtn {
+  background: url(/images/icon-close.svg) center no-repeat;
+  width: 44px;
+  height: 44px;
+  position: fixed;
+  top: 13px;
+  right: 12px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.input__wrapper {
+  width: 100%;
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.input__wrapper_number {
+  width: 100%;
+  max-width: 550px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+
+.input__label {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+}
+
+.counter__wrapper {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.counter__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  background: none;
+  outline: 1px solid #ccc;
+  border: none;
+  border-radius: 2px;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 16px;
+  color: black;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 0;
+  margin: 0;
+}
+
+.counter__button:hover {
+  background-color: black;
+  color: white;
+}
+
+.counter__value {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.checkbox {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  align-self: flex-start;
+}
+
+.checkbox__switch {
+  width: 43px;
+  height: 24px;
+  margin: 0;
+  border-radius: 16px;
+  border: 1px solid #424242;
+  padding: 3px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox__switch_selected {
+  justify-content: flex-end;
+}
+
+.checkbox__switch::after {
+  content: '';
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #8b8b8b;
+  transition: all 0.5s;
+}
+
+.checkbox__switch_selected::after {
+  background-color: black;
+}
+
+.radioWrapper {
+  width: 100%;
+  max-width: 550px;
+  border: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.paypalBtn {
+  width: 100%;
+  max-width: 550px;
+  margin: 15px auto 0;
+}
+
+@media screen and (min-width: 1024px) {
+  .form {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    gap: 30px;
+  }
+
+  .form__title {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  .form__subtitle {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .form__wsWrapper {
+    gap: 18px;
+  }
+
+  .input__label {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
+
+@media screen and (min-width: 1900px) {
+  .form__submitButton {
+    width: 100%;
+    font-size: 24px;
+    line-height: 30px;
+  }
+}
+
+@media screen and (min-height: 850px) {
+  .form {
+    padding: 150px 20px 0;
+  }
+}
