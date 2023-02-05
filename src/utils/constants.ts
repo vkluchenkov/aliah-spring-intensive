@@ -2,7 +2,7 @@ import { FormFields } from '../types';
 
 export const price1 = 130;
 export const price2 = 150;
-export const kidPrice1 = 70;
+export const kidsPrice1 = 70;
 export const kidsPrice2 = 90;
 export const indivPrice = 250;
 export const processingFee = 0.05;
@@ -17,8 +17,11 @@ export const defaultFields: FormFields = {
   name: '',
   email: '',
   technique: false,
-  choreo: false,
-  indiv: false,
-  indivHours: 1,
+  khaligi: false,
+  mejance: false,
+  indivOleynikova: false,
+  indivOstrovska: false,
+  indivHoursOleynikova: 1,
+  indivHoursOstrovska: 1,
   payment: undefined,
 };

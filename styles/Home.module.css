@@ -91,11 +91,13 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 50px 0 0;
+    background: radial-gradient(50% 50% at 50% 50%, var(--bright-color) 0%, var(--dark-color) 100%);
   }
 
   .imageContainer {
     grid-column: 2/-1;
     padding: 0 36px;
+    background: none;
   }
 
   .titleContainer {

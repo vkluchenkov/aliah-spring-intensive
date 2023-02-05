@@ -25,7 +25,25 @@
   background-color: var(--bright-color);
 }
 
+.button_fullwidth {
+  width: 100%;
+}
+
 .button:hover {
   background-color: var(--text-color);
   color: var(--dark-color);
+}
+
+.button_light:disabled {
+  cursor: not-allowed;
+  background-color: var(--bright-color);
+  color: var(--text-color);
+  opacity: 0.6;
+}
+
+.button_dark:disabled {
+  cursor: not-allowed;
+  background-color: var(--dark-color);
+  color: var(--text-color);
+  opacity: 0.6;
 }

@@ -2,16 +2,20 @@ export interface FormPopupProps {
   onClose: () => void;
 }
 
-export type Workshops = 'technique' | 'choreo' | 'indiv';
+export type Workshops = 'technique' | 'khaligi' | 'mejance' | 'indivOleynikova' | 'indivOstrovska';
+
 export type Payment = 'Bank' | 'PayPal' | 'Card' | undefined;
 
 export interface FormFields {
   name: string;
   email: string;
   technique: boolean;
-  choreo: boolean;
-  indiv: boolean;
-  indivHours: number;
+  khaligi: boolean;
+  mejance: boolean;
+  indivOleynikova: boolean;
+  indivOstrovska: boolean;
+  indivHoursOleynikova: number;
+  indivHoursOstrovska: number;
   payment: Payment;
 }
 

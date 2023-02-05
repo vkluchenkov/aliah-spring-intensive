@@ -7,19 +7,17 @@ import { Schedule } from '../src/components/Schedule';
 import { Footer } from '../src/components/Footer';
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
-import { FormPopup } from '../src/components/FormPopup';
 import Image from 'next/image';
 import coverImage from '../public/images/composition3.png';
 import { Button } from '../src/ui-kit/Button';
+import { useRouter } from 'next/router';
 
 const Home: NextPage = () => {
   const { t } = useTranslation();
+  const router = useRouter();
   const { pageContainer, main, imageContainer, cover, titleContainer, title, subTitle } = styles;
 
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [innerWidth, setInnerWidth] = useState(0);
-  const openPopup = () => setIsPopupOpen(true);
-  const closePopup = () => setIsPopupOpen(false);
 
   useEffect(() => {
     const vh = window.innerHeight * 0.01;
@@ -53,7 +51,7 @@ const Home: NextPage = () => {
             <h2 className={subTitle}>{t('h2')}</h2>
             <Button
               type='button'
-              onClick={openPopup}
+              onClick={() => router.push('/signup')}
               variant={innerWidth > 1023 ? 'light' : 'dark'}
             >
               {t('button')}
@@ -62,7 +60,7 @@ const Home: NextPage = () => {
         </section>
         <Schedule />
         <Footer />
-        {isPopupOpen ? <FormPopup onClose={closePopup} /> : <></>}
+        {/* {isPopupOpen ? <FormPopup onClose={closePopup} /> : <></>} */}
       </main>
     </div>
   );

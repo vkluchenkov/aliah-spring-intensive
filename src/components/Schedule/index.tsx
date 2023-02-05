@@ -4,7 +4,7 @@ import {
   indivPrice,
   price1,
   price2,
-  kidPrice1,
+  kidsPrice1,
   kidsPrice2,
   changeDate,
 } from '../../utils/constants';
@@ -45,7 +45,7 @@ export const Schedule: React.FC = () => {
             <div className={event__price}>
               <p className={price__content}>
                 {t('until')} {changeDateString} –
-                <span className={price__value}> {kidPrice1}PLN</span>
+                <span className={price__value}> {kidsPrice1}PLN</span>
               </p>
               <p className={price__content}>
                 {t('after')} {changeDateString} –

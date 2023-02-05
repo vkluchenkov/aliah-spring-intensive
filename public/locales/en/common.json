@@ -32,6 +32,8 @@
     "wstitle": "Workshops selection",
     "name": "Name and Surname",
     "email": "Email",
+    "indivOleynikova": "Ekaterina Oleynikova",
+    "indivOstrovska": "Polina Ostrovska",
     "indivHours": "How many hours?",
     "paymenttitle": "Payment method",
     "bacs": "Bank transfer",

@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import { FormEvent, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { RadioInput } from '../../ui-kit/RadioInput';
-import { TextInput } from '../../ui-kit/TextInput';
+import { RadioInput } from '../src/ui-kit/RadioInput';
+import { TextInput } from '../src/ui-kit/TextInput';
 import {
   defaultFields,
   endDate,
@@ -10,15 +10,19 @@ import {
   indivMinHours,
   indivPrice,
   processingFee,
-} from '../../utils/constants';
-import { getWsPrice } from '../../helpers/getWsPrice';
-import styles from './styles.module.css';
-import { FormPopupProps, Workshops, FormFields } from '../../types';
+} from '../src/utils/constants';
+import { getWsPrice } from '../src/helpers/getWsPrice';
+import styles from '../styles/Signup.module.css';
+import { Workshops, FormFields } from '../src/types';
 import axios from 'axios';
-import { Loader } from '../Loader';
+import { Loader } from '../src/components/Loader';
 import { PayPalButtons } from '@paypal/react-paypal-js';
 import { usePayPalScriptReducer } from '@paypal/react-paypal-js';
 import { loadStripe } from '@stripe/stripe-js';
+import { GetStaticProps, NextPage } from 'next';
+import { useRouter } from 'next/router';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { Button } from '../src/ui-kit/Button';
 
 const stripeKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!;
 const stripePromise = loadStripe(stripeKey);
@@ -29,7 +33,6 @@ const {
   form__subtitle,
   form__wsWrapper,
   form__total,
-  form__submitButton,
   form__error,
   form__success,
   form__closeBtn,
@@ -41,12 +44,14 @@ const {
   checkbox__switch_selected,
   radioWrapper,
   counter__wrapper,
-  paypalBtn,
+  buttonWrapper,
 } = styles;
 
-export const FormPopup: React.FC<FormPopupProps> = ({ onClose }) => {
+const Signup: NextPage = () => {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language;
+
+  const router = useRouter();
 
   const [formFields, setFormFields] = useState<FormFields>(defaultFields);
   const [formFieldsErrors, setFormFieldsErrors] = useState<Partial<FormFields>>({});
@@ -59,10 +64,20 @@ export const FormPopup: React.FC<FormPopupProps> = ({ onClose }) => {
   const [{ options }, dispatch] = usePayPalScriptReducer();
 
   const getTotal = useCallback(() => {
-    const ws1Price = formFields.technique ? getWsPrice() : 0;
-    const ws2Price = formFields.choreo ? getWsPrice() : 0;
-    const indivTotal = formFields.indiv ? indivPrice * formFields.indivHours : 0;
-    const total = ws1Price + ws2Price + indivTotal;
+    const indivTotal = () => {
+      const OleynikovaIndiv = formFields.indivOleynikova
+        ? indivPrice * formFields.indivHoursOleynikova
+        : 0;
+      const OstrovskaIndiv = formFields.indivOstrovska
+        ? indivPrice * formFields.indivHoursOstrovska
+        : 0;
+      return OleynikovaIndiv + OstrovskaIndiv;
+    };
+
+    const techniquePrice = formFields.technique ? getWsPrice('technique') : 0;
+    const khaligiPrice = formFields.khaligi ? getWsPrice('khaligi') : 0;
+    const mejancePrice = formFields.mejance ? getWsPrice('mejance') : 0;
+    const total = techniquePrice + khaligiPrice + mejancePrice + indivTotal();
     const fee =
       formFields.payment != 'Bank' && formFields.payment != undefined ? total * processingFee : 0;
     const grandTotal = total + fee;
@@ -79,12 +94,12 @@ export const FormPopup: React.FC<FormPopupProps> = ({ onClose }) => {
 
   //Handling close on ESC
   useEffect(() => {
-    const handleEscClose = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
+    const handleEscClose = (e: KeyboardEvent) => e.key === 'Escape' && router.push('/');
     document.addEventListener('keydown', handleEscClose);
     return () => {
       document.removeEventListener('keydown', handleEscClose);
     };
-  }, [onClose]);
+  }, [router]);
 
   // Disable button after end date
   useEffect(() => {
@@ -94,7 +109,7 @@ export const FormPopup: React.FC<FormPopupProps> = ({ onClose }) => {
 
   const handleClickClose = (e: React.MouseEvent<HTMLElement>) => {
     const target = e.target as HTMLElement;
-    target.id == 'registration__form' && onClose();
+    target.id == 'registration__form' && router.push('/');
   };
 
   const handleInputChange = useCallback((e: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -109,20 +124,22 @@ export const FormPopup: React.FC<FormPopupProps> = ({ onClose }) => {
     setIsBtnDisabled(!form!.checkValidity());
   }, []);
 
-  const handleNumber = (action: 'plus' | 'minus') => {
-    if (
-      formFields.indivHours >= indivMinHours &&
-      formFields.indivHours < indivMaxHours &&
-      action === 'plus'
-    )
-      setFormFields((prev) => ({ ...prev, ['indivHours']: prev.indivHours + 1 }));
+  const handleNumber = (action: 'plus' | 'minus', teacher: 'Oleynikova' | 'Ostrovska') => {
+    const field = ('indivHours' + teacher) as keyof FormFields;
 
     if (
-      formFields.indivHours > indivMinHours &&
-      formFields.indivHours <= indivMaxHours &&
+      formFields[field]! >= indivMinHours &&
+      formFields[field]! < indivMaxHours &&
+      action === 'plus'
+    )
+      setFormFields((prev) => ({ ...prev, [field]: (formFields[field] as number) + 1 }));
+
+    if (
+      formFields[field]! > indivMinHours &&
+      formFields[field]! <= indivMaxHours &&
       action === 'minus'
     )
-      setFormFields((prev) => ({ ...prev, ['indivHours']: prev.indivHours - 1 }));
+      setFormFields((prev) => ({ ...prev, [field]: (formFields[field] as number) - 1 }));
   };
 
   const handleSwitch = (ws: Workshops) =>
@@ -148,7 +165,7 @@ export const FormPopup: React.FC<FormPopupProps> = ({ onClose }) => {
           setSuccess(true);
           setFormFields(defaultFields);
           setTimeout(() => {
-            onClose();
+            router.push('/');
           }, 5000);
         })
         .catch((error: any) => {
@@ -171,7 +188,7 @@ export const FormPopup: React.FC<FormPopupProps> = ({ onClose }) => {
     <>
       {isLoader && <Loader />}
       <form id='registration__form' noValidate className={form} onClick={handleClickClose}>
-        <button type='button' className={form__closeBtn} onClick={onClose} />
+        <button type='button' className={form__closeBtn} onClick={() => router.push('/')} />
         <h2 className={form__title}>{t('form.title')}</h2>
         <div className={input__wrapper}>
           <TextInput
@@ -205,43 +222,100 @@ export const FormPopup: React.FC<FormPopupProps> = ({ onClose }) => {
               className={clsx(checkbox__switch, formFields.technique && checkbox__switch_selected)}
               onClick={() => handleSwitch('technique')}
             />
-            <p className={input__label}>{t('ws1.title') + ': ' + getWsPrice() + 'PLN'}</p>
-          </div>
-
-          <div className={checkbox}>
-            <span
-              className={clsx(checkbox__switch, formFields.choreo && checkbox__switch_selected)}
-              onClick={() => handleSwitch('choreo')}
-            />
-            <p className={input__label}>{t('ws2.title') + ': ' + getWsPrice() + 'PLN'}</p>
-          </div>
-
-          <div className={checkbox}>
-            <span
-              className={clsx(checkbox__switch, formFields.indiv && checkbox__switch_selected)}
-              onClick={() => handleSwitch('indiv')}
-            />
             <p className={input__label}>
-              {t('indiv') + ': ' + indivPrice + 'PLN' + ' / ' + t('indivPrice')}
+              {t('ws1.teacher') + ' / ' + t('ws1.title') + ': ' + getWsPrice('technique') + 'PLN'}
             </p>
           </div>
 
-          {formFields.indiv && (
+          <div className={checkbox}>
+            <span
+              className={clsx(checkbox__switch, formFields.khaligi && checkbox__switch_selected)}
+              onClick={() => handleSwitch('khaligi')}
+            />
+            <p className={input__label}>
+              {t('ws2.teacher') + ' / ' + t('ws2.title') + ': ' + getWsPrice('khaligi') + 'PLN'}
+            </p>
+          </div>
+
+          <div className={checkbox}>
+            <span
+              className={clsx(checkbox__switch, formFields.mejance && checkbox__switch_selected)}
+              onClick={() => handleSwitch('mejance')}
+            />
+            <p className={input__label}>
+              {t('ws3.teacher') + ' / ' + t('ws3.title') + ': ' + getWsPrice('mejance') + 'PLN'}
+            </p>
+          </div>
+
+          <h3 className={form__subtitle}>{t('indiv')}</h3>
+
+          {/* Individual lessons Oleynikova  */}
+          <div className={checkbox}>
+            <span
+              className={clsx(
+                checkbox__switch,
+                formFields.indivOleynikova && checkbox__switch_selected
+              )}
+              onClick={() => handleSwitch('indivOleynikova')}
+            />
+            <p className={input__label}>
+              {t('form.indivOleynikova') + ': ' + indivPrice + 'PLN' + ' / ' + t('indivPrice')}
+            </p>
+          </div>
+
+          {formFields.indivOleynikova && (
             <div className={clsx(input__wrapper, input__wrapper_number)}>
               <span className={input__label}>{t('form.indivHours')}</span>
               <div className={counter__wrapper}>
                 <button
                   type='button'
                   className={styles.counter__button}
-                  onClick={() => handleNumber('minus')}
+                  onClick={() => handleNumber('minus', 'Oleynikova')}
                 >
                   –
                 </button>
-                <span className={styles.counter__value}>{formFields.indivHours}</span>
+                <span className={styles.counter__value}>{formFields.indivHoursOleynikova}</span>
                 <button
                   type='button'
                   className={styles.counter__button}
-                  onClick={() => handleNumber('plus')}
+                  onClick={() => handleNumber('plus', 'Oleynikova')}
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Individual lessons Ostrovska*/}
+          <div className={checkbox}>
+            <span
+              className={clsx(
+                checkbox__switch,
+                formFields.indivOstrovska && checkbox__switch_selected
+              )}
+              onClick={() => handleSwitch('indivOstrovska')}
+            />
+            <p className={input__label}>
+              {t('form.indivOstrovska') + ': ' + indivPrice + 'PLN' + ' / ' + t('indivPrice')}
+            </p>
+          </div>
+
+          {formFields.indivOstrovska && (
+            <div className={clsx(input__wrapper, input__wrapper_number)}>
+              <span className={input__label}>{t('form.indivHours')}</span>
+              <div className={counter__wrapper}>
+                <button
+                  type='button'
+                  className={styles.counter__button}
+                  onClick={() => handleNumber('minus', 'Ostrovska')}
+                >
+                  –
+                </button>
+                <span className={styles.counter__value}>{formFields.indivHoursOstrovska}</span>
+                <button
+                  type='button'
+                  className={styles.counter__button}
+                  onClick={() => handleNumber('plus', 'Ostrovska')}
                 >
                   +
                 </button>
@@ -250,6 +324,7 @@ export const FormPopup: React.FC<FormPopupProps> = ({ onClose }) => {
           )}
         </div>
 
+        {/* Total section */}
         {getTotal().grandTotal > 0 ? (
           <span className={form__total}>
             {t('form.total').toUpperCase() + ': ' + getTotal().grandTotal}PLN
@@ -258,6 +333,7 @@ export const FormPopup: React.FC<FormPopupProps> = ({ onClose }) => {
           <></>
         )}
 
+        {/* Payment section */}
         <fieldset className={radioWrapper}>
           <h3 className={form__subtitle}>{t('form.paymenttitle')}</h3>
           <RadioInput
@@ -289,37 +365,41 @@ export const FormPopup: React.FC<FormPopupProps> = ({ onClose }) => {
           />
         </fieldset>
         {formFields.payment === 'PayPal' ? (
-          <PayPalButtons
-            style={{ color: 'gold', height: 45, label: 'checkout' }}
-            fundingSource='paypal'
-            disabled={getTotal().grandTotal > 0 ? isBtnDisabled : true}
-            className={paypalBtn}
-            createOrder={(data, actions) => {
-              return actions.order.create({
-                purchase_units: [
-                  {
-                    amount: { value: getTotal().grandTotal.toFixed(2) },
-                  },
-                ],
-                application_context: {},
-              });
-            }}
-            onApprove={async (data, actions) => {
-              await actions.order!.capture();
-              handleSubmit();
-            }}
-          />
+          <div className={buttonWrapper}>
+            <PayPalButtons
+              style={{ color: 'gold', height: 54, label: 'checkout', shape: 'pill' }}
+              fundingSource='paypal'
+              disabled={getTotal().grandTotal > 0 ? isBtnDisabled : true}
+              createOrder={(data, actions) => {
+                return actions.order.create({
+                  purchase_units: [
+                    {
+                      amount: { value: getTotal().grandTotal.toFixed(2) },
+                    },
+                  ],
+                  application_context: {},
+                });
+              }}
+              onApprove={async (data, actions) => {
+                await actions.order!.capture();
+                handleSubmit();
+              }}
+            />
+          </div>
         ) : (
-          <button
-            type='button'
-            className={form__submitButton}
-            disabled={getTotal().grandTotal > 0 ? isBtnDisabled : true}
-            onClick={handleSubmit}
-          >
-            {formFields.payment === 'Card'
-              ? t('form.button') + t('form.button_stripe')
-              : t('form.button')}
-          </button>
+          <div className={buttonWrapper}>
+            <Button
+              type='button'
+              variant='light'
+              fullwidth
+              disabled={getTotal().grandTotal > 0 ? isBtnDisabled : true}
+              onClick={handleSubmit}
+            >
+              {formFields.payment === 'Card'
+                ? t('form.button') + t('form.button_stripe')
+                : t('form.button')}
+            </Button>
+          </div>
         )}
         {submitError && <span className={form__error}>{t('form.oops')}</span>}
         {success && <span className={form__success}>{t('form.success')}</span>}
@@ -327,3 +407,13 @@ export const FormPopup: React.FC<FormPopupProps> = ({ onClose }) => {
     </>
   );
 };
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale as string, ['common'])),
+    },
+  };
+};
+
+export default Signup;
