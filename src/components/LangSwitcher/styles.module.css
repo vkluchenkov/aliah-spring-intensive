@@ -28,6 +28,17 @@
   opacity: 1;
 }
 
+@media screen and (min-width: 768px) {
+  .container {
+    gap: 12px;
+  }
+
+  .langItem {
+    font-size: 16px;
+    line-height: 1.2;
+  }
+}
+
 @media screen and (min-width: 1280px) {
   .container {
     gap: 15px;

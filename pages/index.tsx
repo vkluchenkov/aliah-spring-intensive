@@ -10,32 +10,25 @@ import { useEffect, useState } from 'react';
 import { FormPopup } from '../src/components/FormPopup';
 import Image from 'next/image';
 import coverImage from '../public/images/composition3.png';
+import { Button } from '../src/ui-kit/Button';
 
 const Home: NextPage = () => {
   const { t } = useTranslation();
-  const {
-    pageContainer,
-    main,
-    imageContainer,
-    cover,
-    titleContainer,
-    title,
-    subTitle,
-    signupButton,
-  } = styles;
+  const { pageContainer, main, imageContainer, cover, titleContainer, title, subTitle } = styles;
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [innerWidth, setInnerWidth] = useState(0);
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => setIsPopupOpen(false);
 
-  const handleVh = () => {
-    if (typeof window != 'undefined') {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-    }
-  };
+  useEffect(() => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  });
 
-  handleVh();
+  useEffect(() => {
+    setInnerWidth(window.innerWidth);
+  }, []);
 
   return (
     <div className={pageContainer}>
@@ -58,9 +51,13 @@ const Home: NextPage = () => {
           <div className={titleContainer}>
             <h1 className={title}>{t('h1')}</h1>
             <h2 className={subTitle}>{t('h2')}</h2>
-            <button className={signupButton} type='button' onClick={openPopup}>
+            <Button
+              type='button'
+              onClick={openPopup}
+              variant={innerWidth > 1023 ? 'light' : 'dark'}
+            >
               {t('button')}
-            </button>
+            </Button>
           </div>
         </section>
         <Schedule />
