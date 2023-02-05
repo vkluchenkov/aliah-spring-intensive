@@ -1,16 +1,15 @@
+import { useEffect, useState } from 'react';
 import { GetStaticProps, NextPage } from 'next';
-import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
+import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import { Header } from '../src/components/Header';
 import { Schedule } from '../src/components/Schedule';
 import { Footer } from '../src/components/Footer';
-import { useTranslation } from 'next-i18next';
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import coverImage from '../public/images/composition3.png';
 import { Button } from '../src/ui-kit/Button';
 import { useRouter } from 'next/router';
+import coverImage from '../public/images/composition3.png';
 
 const Home: NextPage = () => {
   const { t } = useTranslation();
@@ -30,12 +29,8 @@ const Home: NextPage = () => {
 
   return (
     <div className={pageContainer}>
-      <Head>
-        <title>
-          Intensive dance weekend with Ekaterina Oleynikova and Polina Ostrovska in Warsaw
-        </title>
-      </Head>
       <Header />
+
       <main className={main}>
         <section className={cover}>
           <div className={imageContainer}>
@@ -58,9 +53,10 @@ const Home: NextPage = () => {
             </Button>
           </div>
         </section>
+
         <Schedule />
+
         <Footer />
-        {/* {isPopupOpen ? <FormPopup onClose={closePopup} /> : <></>} */}
       </main>
     </div>
   );

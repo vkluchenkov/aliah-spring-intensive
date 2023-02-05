@@ -1,5 +1,4 @@
 import { GetStaticProps, NextPage } from 'next';
-import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import styles from '../styles/ThankYou.module.css';
@@ -19,9 +18,6 @@ const ThankYou: NextPage = () => {
 
   return (
     <div className={pageContainer}>
-      <Head>
-        <title>Intensive dance weekend with Ekaterina Oleynikova in Warsaw</title>
-      </Head>
       <main className={main}>
         <h1 className={header}>{t('thankYou.title')}</h1>
         <h2 className={subHeader}>{t('thankYou.subtitle')}</h2>

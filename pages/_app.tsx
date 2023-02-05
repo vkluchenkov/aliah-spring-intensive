@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
 import { Inter } from '@next/font/google';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+import Head from 'next/head';
 
 const inter = Inter({ subsets: ['cyrillic', 'latin', 'latin-ext'] });
 
@@ -18,6 +19,11 @@ const App = ({ Component, pageProps }: AppProps) => {
           font-family: ${inter.style.fontFamily};
         }
       `}</style>
+      <Head>
+        <title>
+          Intensive dance weekend with Ekaterina Oleynikova and Polina Ostrovska in Warsaw
+        </title>
+      </Head>
       <Component {...pageProps} />
     </PayPalScriptProvider>
   );
