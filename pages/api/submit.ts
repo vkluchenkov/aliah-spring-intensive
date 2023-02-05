@@ -69,44 +69,50 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return result;
   };
 
-  // const adminEmail = process.env.ADMIN_EMAIL;
-  // const senderEmail = process.env.SENDER_EMAIL;
-  // const senderName = process.env.SENDER_NAME;
-  // const adminMailContent = getAdminEmailContent(orderPayload);
-  // const userMailContent = getUserMailContent({
-  //   orderPayload,
-  //   hi: t('email.hi'),
-  //   h2: t('email.h2'),
-  //   order: t('email.order'),
-  //   bankTitle: t('email.bank_title'),
-  //   bankReceiver: t('email.bank_receiver'),
-  //   bankName: t('email.bank_name'),
-  //   bankAccount: t('email.bank_account'),
-  //   bankAddress: t('email.bank_address'),
-  //   totalTitle: t('form.total'),
-  //   ws1Title: t('ws1.title'),
-  //   ws2Title: t('ws2.title'),
-  //   indivTitle: t('indiv'),
-  //   paymentTitle: t('form.paymenttitle'),
-  //   paymentBank: t('form.bacs'),
-  //   paymentStripe: t('form.stripe'),
-  //   paymentPayPal: t('form.paypal'),
-  //   hour: t('hour'),
-  //   paymentMessage: t('email.payment_message'),
-  // });
+  const adminEmail = process.env.ADMIN_EMAIL;
+  const senderEmail = process.env.SENDER_EMAIL;
+  const senderName = process.env.SENDER_NAME;
+  const adminMailContent = getAdminEmailContent(orderPayload);
+  const userMailContent = getUserMailContent({
+    orderPayload,
+    hi: t('email.hi'),
+    h2: t('email.h2'),
+    order: t('email.order'),
+    bankTitle: t('email.bank_title'),
+    bankReceiver: t('email.bank_receiver'),
+    bankName: t('email.bank_name'),
+    bankAccount: t('email.bank_account'),
+    bankAddress: t('email.bank_address'),
+    totalTitle: t('form.total'),
+    ws1Title: t('ws1.title'),
+    ws1Teacher: t('ws1.teacher'),
+    ws2Title: t('ws2.title'),
+    ws2Teacher: t('ws2.teacher'),
+    ws3Title: t('ws3.title'),
+    ws3Teacher: t('ws3.teacher'),
+    indivTitle: t('indiv'),
+    indivTitleOleynikova: t('form.indivOleynikova'),
+    indivTitleOstrovska: t('form.indivOstrovska'),
+    paymentTitle: t('form.paymenttitle'),
+    paymentBank: t('form.bacs'),
+    paymentStripe: t('form.stripe'),
+    paymentPayPal: t('form.paypal'),
+    hour: t('hour'),
+    paymentMessage: t('email.payment_message'),
+  });
 
   try {
-    //   sendMail({
-    //     adminEmail: adminEmail!,
-    //     senderEmail: senderEmail!,
-    //     senderName: senderName!,
-    //     userEmail: orderPayload.email,
-    //     userName: orderPayload.name,
-    //     userSubj: t('email.subject_user'),
-    //     userContent: userMailContent,
-    //     adminSubj: 'New registration to dance intensive',
-    //     adminContent: adminMailContent,
-    //   });
+    sendMail({
+      adminEmail: adminEmail!,
+      senderEmail: senderEmail!,
+      senderName: senderName!,
+      userEmail: orderPayload.email,
+      userName: orderPayload.name,
+      userSubj: t('email.subject_user'),
+      userContent: userMailContent,
+      adminSubj: 'New registration to dance intensive',
+      adminContent: adminMailContent,
+    });
 
     await notion.pages.create({
       parent: {

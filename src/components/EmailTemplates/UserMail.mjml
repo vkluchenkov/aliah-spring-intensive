@@ -1,8 +1,11 @@
 <mjml>
   <mj-head>
-    <mj-font name="Inter" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900" />
+    <mj-font
+      name="Inter"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900"
+    />
     <mj-attributes>
-      <mj-text font-family="Inter, Helvetica, Arial, sans-serif" font-weight="400" />
+      <mj-text font-family="Inter, Helvetica, Arial, sans-serif" font-weight="300" />
     </mj-attributes>
   </mj-head>
   <mj-body background-color="#eee">
@@ -10,19 +13,19 @@
     <mj-section background-color="white">
       <mj-column>
         <mj-image
-          src="../../../public/images/Aliah_team_BLACK.png"
+          src="https://intensive.aliah.dance/images/Aliah_team_BLACK.png"
           width="250px"
           alt="Aliah Team Logo"
         />
         <mj-text align="center" letter-spacing="15px" padding="10px 0 0 3px"> presents </mj-text>
         <mj-text
-          font-size="40px"
+          font-size="38px"
           font-weight="900"
           text-transform="uppercase"
           align="center"
           padding="30px 0 0 0"
         >
-          Ekaterina Oleynikova
+          Ekaterina Oleynikova<br />& Polina Ostrovska
         </mj-text>
         <mj-text align="center" font-size="16px"> Intensive dance weekend in Warsaw </mj-text>
         <mj-divider border-width="1px" padding="25px 0 0" />
@@ -32,12 +35,9 @@
     <!-- Main section -->
     <mj-section background-color="white" padding-bottom="50px">
       <mj-column>
-        <mj-text font-size="18px" line-height="1.5" font-weight="600">Hi Anyone!</mj-text>
+        <mj-text font-size="18px" line-height="1.5" font-weight="600">${hi + ' ' + name}!</mj-text>
 
-        <mj-text font-size="18px" line-height="1.5">
-          We've received your registration to Intensive dance weekend in Warsaw with Ekaterina
-          Oleynikova. Here's what you ordered:
-        </mj-text>
+        <mj-text font-size="18px" line-height="1.5">${h2}</mj-text>
 
         <!-- Workshops breakdown -->
         <mj-text
@@ -46,22 +46,45 @@
           font-weight="600"
           padding-top="25px"
           padding-bottom="0"
-          >Here's what you ordered:</mj-text
+          >${order}</mj-text
         >
+
         <mj-text font-size="18px" line-height="1.5" padding="0">
           <ul>
-            <li>Техника и комбинации</li>
-            <li>Pop song workshop: 5ч</li>
+            ${technique ? `
+            <li>${ws1Teacher + ': ' + ws1Title}</li>
+            ` : ''} ${khaligi ? `
+            <li>${ws2Teacher + ': ' + ws2Title}</li>
+            ` : ''} ${mejance ? `
+            <li>${ws3Teacher + ': ' + ws3Title}</li>
+            ` : ''}
+          </ul>
+        </mj-text>
+
+        <mj-text
+          font-size="18px"
+          line-height="1.5"
+          font-weight="600"
+          padding-top="25px"
+          padding-bottom="0"
+          >${indivTitle + ':'}
+        </mj-text>
+        <mj-text font-size="18px" line-height="1.5" padding="0">
+          <ul>
+            ${ indivHoursOleynikova ? `
+            <li>${indivTitleOleynikova} ${indivHoursOleynikova + hour}</li>
+            ` : '' } ${ indivHoursOstrovska ? `
+            <li>${indivTitleOstrovska} ${indivHoursOstrovska + hour}</li>
+            ` : '' }
           </ul>
         </mj-text>
         <mj-text font-size="18px" line-height="1.5" font-weight="600" padding-bottom="0">
-          Total: 999PLN
+          ${totalTitle}: ${total.total}PLN
         </mj-text>
         <mj-text font-size="18px" line-height="1.5" font-weight="600" padding-top="0">
-          Payment method: Card
+          ${paymentTitle + ': ' + paymentMenthod()}
         </mj-text>
-
-        <!-- Bank details -->
+        ${ payment === 'Bank' ? `<!-- Bank details -->
         <mj-divider border-width="1px" padding="25px 0 25px" />
         <mj-text
           font-size="18px"
@@ -69,18 +92,29 @@
           font-weight="600"
           padding-top="25px"
           padding-bottom="0"
-          >Bank account details:</mj-text
+          >${bankTitle}</mj-text
         >
-        <mj-text font-size="18px" line-height="1.5" padding-bottom="0"
-          >Bank account details:</mj-text
+        <mj-text font-size="18px" line-height="1.5" padding-bottom="0" padding-top="0"
+          >${bankReceiver}</mj-text
         >
+        <mj-text font-size="18px" line-height="1.5" padding-bottom="0" padding-top="0"
+          >${bankName}</mj-text
+        >
+        <mj-text font-size="18px" line-height="1.5" padding-bottom="0" padding-top="0"
+          >${bankAccount}</mj-text
+        >
+        <mj-text font-size="18px" line-height="1.5" padding-bottom="0" padding-top="0"
+          >${bankAddress}</mj-text
+        >
+        ` : '' }
+        <mj-text font-size="18px" line-height="1.5" padding-bottom="0">${paymentMessage}</mj-text>
       </mj-column>
     </mj-section>
 
     <!-- Footer -->
     <mj-section background-color="#eee">
       <mj-column>
-        <mj-text align="center" padding="0"> ©2022 Aliah Bellydance Team </mj-text>
+        <mj-text align="center" padding="0"> ©Aliah Bellydance Team </mj-text>
       </mj-column>
     </mj-section>
   </mj-body>

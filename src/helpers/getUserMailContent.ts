@@ -1,6 +1,5 @@
 import { OrderPayload } from '../types';
 import mjml2html from 'mjml';
-import { logo } from '../utils/logo';
 
 interface UserMailProps {
   hi: string;
@@ -13,8 +12,14 @@ interface UserMailProps {
   bankAddress: string;
   totalTitle: string;
   ws1Title: string;
+  ws1Teacher: string;
   ws2Title: string;
+  ws2Teacher: string;
+  ws3Title: string;
+  ws3Teacher: string;
   indivTitle: string;
+  indivTitleOleynikova: string;
+  indivTitleOstrovska: string;
   paymentTitle: string;
   paymentBank: string;
   paymentStripe: string;
@@ -35,8 +40,14 @@ export const getUserMailContent = (props: UserMailProps) => {
     bankAccount,
     bankAddress,
     ws1Title,
+    ws1Teacher,
     ws2Title,
+    ws2Teacher,
+    ws3Title,
+    ws3Teacher,
     indivTitle,
+    indivTitleOleynikova,
+    indivTitleOstrovska,
     hour,
     totalTitle,
     paymentTitle,
@@ -46,7 +57,16 @@ export const getUserMailContent = (props: UserMailProps) => {
     paymentMessage,
   } = props;
 
-  const { technique, choreo, indiv, indivHours, total, payment, name } = props.orderPayload;
+  const {
+    technique,
+    khaligi,
+    mejance,
+    indivHoursOleynikova,
+    indivHoursOstrovska,
+    total,
+    payment,
+    name,
+  } = props.orderPayload;
 
   const paymentMenthod = () => {
     if (payment === 'Bank') return paymentBank;
@@ -57,9 +77,12 @@ export const getUserMailContent = (props: UserMailProps) => {
 
   const template = `<mjml>
   <mj-head>
-    <mj-font name="Inter" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900" />
+    <mj-font
+      name="Inter"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900"
+    />
     <mj-attributes>
-      <mj-text font-family="Inter, Helvetica, Arial, sans-serif" font-weight="400" />
+      <mj-text font-family="Inter, Helvetica, Arial, sans-serif" font-weight="300" />
     </mj-attributes>
   </mj-head>
   <mj-body background-color="#eee">
@@ -73,13 +96,13 @@ export const getUserMailContent = (props: UserMailProps) => {
         />
         <mj-text align="center" letter-spacing="15px" padding="10px 0 0 3px"> presents </mj-text>
         <mj-text
-          font-size="40px"
+          font-size="38px"
           font-weight="900"
           text-transform="uppercase"
           align="center"
           padding="30px 0 0 0"
         >
-          Ekaterina Oleynikova
+          Ekaterina Oleynikova<br />& Polina Ostrovska
         </mj-text>
         <mj-text align="center" font-size="16px"> Intensive dance weekend in Warsaw </mj-text>
         <mj-divider border-width="1px" padding="25px 0 0" />
@@ -102,18 +125,61 @@ export const getUserMailContent = (props: UserMailProps) => {
           padding-bottom="0"
           >${order}</mj-text
         >
+
         <mj-text font-size="18px" line-height="1.5" padding="0">
           <ul>
-            ${technique ? `<li>${ws1Title}</li>` : ''}
-            ${choreo ? `<li>${ws2Title}</li>` : ''}
-            ${indiv ? `<li>${indivTitle} ${indivHours + hour}</li>` : ''}
+            ${
+              technique
+                ? `
+            <li>${ws1Teacher + ': ' + ws1Title}</li>
+            `
+                : ''
+            } ${
+    khaligi
+      ? `
+            <li>${ws2Teacher + ': ' + ws2Title}</li>
+            `
+      : ''
+  } ${
+    mejance
+      ? `
+            <li>${ws3Teacher + ': ' + ws3Title}</li>
+            `
+      : ''
+  }
+          </ul>
+        </mj-text>
+
+        <mj-text
+          font-size="18px"
+          line-height="1.5"
+          font-weight="600"
+          padding-top="25px"
+          padding-bottom="0"
+          >${indivTitle + ':'}
+        </mj-text>
+        <mj-text font-size="18px" line-height="1.5" padding="0">
+          <ul>
+            ${
+              indivHoursOleynikova
+                ? `
+            <li>${indivTitleOleynikova}: ${indivHoursOleynikova + hour}</li>
+            `
+                : ''
+            } ${
+    indivHoursOstrovska
+      ? `
+            <li>${indivTitleOstrovska}: ${indivHoursOstrovska + hour}</li>
+            `
+      : ''
+  }
           </ul>
         </mj-text>
         <mj-text font-size="18px" line-height="1.5" font-weight="600" padding-bottom="0">
           ${totalTitle}: ${total.total}PLN
         </mj-text>
         <mj-text font-size="18px" line-height="1.5" font-weight="600" padding-top="0">
-        ${paymentTitle + ': ' + paymentMenthod()}
+          ${paymentTitle + ': ' + paymentMenthod()}
         </mj-text>
         ${
           payment === 'Bank'
@@ -127,25 +193,35 @@ export const getUserMailContent = (props: UserMailProps) => {
           padding-bottom="0"
           >${bankTitle}</mj-text
         >
-        <mj-text font-size="18px" line-height="1.5" padding-bottom="0" padding-top="0">${bankReceiver}</mj-text>
-        <mj-text font-size="18px" line-height="1.5" padding-bottom="0" padding-top="0">${bankName}</mj-text>
-        <mj-text font-size="18px" line-height="1.5" padding-bottom="0" padding-top="0">${bankAccount}</mj-text>
-        <mj-text font-size="18px" line-height="1.5" padding-bottom="0" padding-top="0">${bankAddress}</mj-text>
-`
+        <mj-text font-size="18px" line-height="1.5" padding-bottom="0" padding-top="0"
+          >${bankReceiver}</mj-text
+        >
+        <mj-text font-size="18px" line-height="1.5" padding-bottom="0" padding-top="0"
+          >${bankName}</mj-text
+        >
+        <mj-text font-size="18px" line-height="1.5" padding-bottom="0" padding-top="0"
+          >${bankAccount}</mj-text
+        >
+        <mj-text font-size="18px" line-height="1.5" padding-bottom="0" padding-top="0"
+          >${bankAddress}</mj-text
+        >
+        `
             : ''
         }
         <mj-text font-size="18px" line-height="1.5" padding-bottom="0">${paymentMessage}</mj-text>
-              </mj-column>
+      </mj-column>
     </mj-section>
 
     <!-- Footer -->
     <mj-section background-color="#eee">
       <mj-column>
-        <mj-text align="center" padding="0"> ©2022 Aliah Bellydance Team </mj-text>
+        <mj-text align="center" padding="0"> ©Aliah Bellydance Team </mj-text>
       </mj-column>
     </mj-section>
   </mj-body>
-</mjml>`;
+</mjml>
+
+`;
 
   return mjml2html(template).html;
 };
