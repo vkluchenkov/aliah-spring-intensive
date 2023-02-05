@@ -4,13 +4,14 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background: white;
+  background: var(--dark-color);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
   padding: 50px 20px 0;
   z-index: 1;
+  color: var(--text-color);
 }
 
 .form__title {
@@ -44,8 +45,8 @@
   display: block;
   width: 100%;
   max-width: 550px;
-  border-top: 1px solid rgb(59, 59, 59);
-  border-bottom: 1px solid rgb(59, 59, 59);
+  border-top: 1px solid var(--text-color);
+  border-bottom: 1px solid var(--text-color);
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -93,7 +94,7 @@
   font-size: 14px;
   line-height: 16px;
   text-align: center;
-  color: red;
+  color: var(--text-color);
   margin: 0;
   padding: 0;
 }
@@ -161,14 +162,14 @@
   width: 25px;
   height: 25px;
   background: none;
-  outline: 1px solid #ccc;
+  outline: 1px solid var(--text-color);
   border: none;
   border-radius: 2px;
   font-style: normal;
   font-weight: 300;
   font-size: 20px;
   line-height: 16px;
-  color: black;
+  color: var(--text-color);
   cursor: pointer;
   transition: all 0.3s;
   padding: 0;
@@ -176,7 +177,7 @@
 }
 
 .counter__button:hover {
-  background-color: black;
+  background-color: var(--bright-color);
   color: white;
 }
 
@@ -201,7 +202,7 @@
   height: 24px;
   margin: 0;
   border-radius: 16px;
-  border: 1px solid #424242;
+  border: 1px solid var(--text-color);
   padding: 3px;
   box-sizing: border-box;
   display: flex;
@@ -218,12 +219,12 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: #8b8b8b;
+  background-color: var(--bright-color);
   transition: all 0.5s;
 }
 
 .checkbox__switch_selected::after {
-  background-color: black;
+  background-color: var(--text-color);
 }
 
 .radioWrapper {
@@ -244,8 +245,6 @@
 
 @media screen and (min-width: 1024px) {
   .form {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
     gap: 30px;
   }
 
