@@ -3,9 +3,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: none;
+  border: 1px solid var(--text-color);
   border-radius: 15px;
-  outline: 1px solid var(--text-color);
+  outline: none;
   padding: 16px;
   font-style: normal;
   font-weight: 600;
