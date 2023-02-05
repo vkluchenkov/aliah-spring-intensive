@@ -6,6 +6,7 @@
   "indiv": "Individual lessons",
   "indivPrice": "1h",
   "hour": "h",
+
   "ws1": {
     "time": "13:00-14:00",
     "title": "Orental technique for KIDS",
@@ -27,6 +28,7 @@
 
   "button": "Sign up",
   "address": "Address",
+
   "form": {
     "title": "Registration",
     "wstitle": "Workshops selection",

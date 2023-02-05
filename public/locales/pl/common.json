@@ -1,21 +1,34 @@
 {
-  "h1": "Ekaterina Oleynikova",
+  "h1": "Ekaterina Oleynikova &\u00a0Polina Ostrovska",
   "h2": "Intensive dance weekend in Warsaw",
   "until": "do",
   "after": "od",
   "indiv": "Prywatne zajęcia",
   "indivPrice": "1 godz",
   "hour": "godz",
+
   "ws1": {
-    "title": "Technika i combinacji",
-    "level": "poziom open – dla wszystkich"
+    "time": "13:00-14:00",
+    "title": "Technika dla DZIECI",
+    "teacher": "Ekaterina Oleynikova",
+    "level": "poziom open"
   },
   "ws2": {
-    "title": "Pop song choreografia",
-    "level": "sredniozaaw. + zaaw. poziom"
+    "time": "14:15-16:15",
+    "title": "Khaligi choreo ",
+    "teacher": "Polina Ostrovska",
+    "level": "poziom open"
   },
-  "address": "Adres",
+  "ws3": {
+    "time": "16:30-18:30",
+    "title": "Mejance choreo ",
+    "teacher": "Ekaterina Oleynikova",
+    "level": "poziom open"
+  },
+
   "button": "Rejestracja",
+  "address": "Adres",
+
   "form": {
     "title": "Rejestracja",
     "wstitle": "Wybierz warsztaty",
