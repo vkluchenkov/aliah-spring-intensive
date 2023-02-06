@@ -169,6 +169,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           type: 'select',
           select: { name: orderPayload.payment ? orderPayload.payment : '' },
         },
+        Language: {
+          type: 'select',
+          select: { name: orderPayload.lng },
+        },
       },
     });
     res.status(200).send('Ok');

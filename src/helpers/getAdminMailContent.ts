@@ -13,13 +13,20 @@ export const getAdminEmailContent = (orderPayload: OrderPayload) => {
     indivOstrovska,
     payment,
     total,
+    lng,
   } = orderPayload;
+  const language = () => {
+    if (lng === 'ru') return 'Русский';
+    else if (lng === 'pl') return 'Polski';
+    else if (lng === 'en') return 'English';
+  };
   return `<html>
 <body>
 <h1>New registration to intensive with Ekaterina and Polina</h1>
 <hr />
 <h2>${name}</h2>
 <p>${email}</p>
+<p>Language: ${language()}</p>
 <p><b>Workshops:</b></p>
 ${technique ? '<p>- Technique</p>' : ''}
 ${khaligi ? '<p>- Khaligi</p>' : ''}
