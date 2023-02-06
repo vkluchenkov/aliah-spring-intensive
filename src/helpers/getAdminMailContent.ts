@@ -32,7 +32,7 @@ ${technique ? '<p>- Technique</p>' : ''}
 ${khaligi ? '<p>- Khaligi</p>' : ''}
 ${mejance ? '<p>- Mejance</p>' : ''}
 ${indivOleynikova ? '<p>- Individiual classes Oleynikova: ' + indivHoursOleynikova + 'h</p>' : ''}
-${indivOstrovska ? '<p>- Individiual classes Oleynikova: ' + indivHoursOstrovska + 'h</p>' : ''}
+${indivOstrovska ? '<p>- Individiual classes Ostrovska: ' + indivHoursOstrovska + 'h</p>' : ''}
 <p><b>Total: ${total.grandTotal}PLN</b></p>
 <p>Fee: ${total.fee}PLN</p>
 <p>Payment method: ${payment}</p>
