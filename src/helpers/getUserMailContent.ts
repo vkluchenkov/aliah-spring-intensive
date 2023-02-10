@@ -61,6 +61,8 @@ export const getUserMailContent = (props: UserMailProps) => {
     technique,
     khaligi,
     mejance,
+    indivOleynikova,
+    indivOstrovska,
     indivHoursOleynikova,
     indivHoursOstrovska,
     total,
@@ -150,7 +152,9 @@ export const getUserMailContent = (props: UserMailProps) => {
           </ul>
         </mj-text>
 
-        <mj-text
+        ${
+          indivOleynikova || indivOstrovska
+            ? `<mj-text
           font-size="18px"
           line-height="1.5"
           font-weight="600"
@@ -161,20 +165,22 @@ export const getUserMailContent = (props: UserMailProps) => {
         <mj-text font-size="18px" line-height="1.5" padding="0">
           <ul>
             ${
-              indivHoursOleynikova
+              indivOleynikova && indivHoursOleynikova
                 ? `
             <li>${indivTitleOleynikova}: ${indivHoursOleynikova + hour}</li>
             `
                 : ''
             } ${
-    indivHoursOstrovska
-      ? `
-            <li>${indivTitleOstrovska}: ${indivHoursOstrovska + hour}</li>
-            `
-      : ''
-  }
+                indivOstrovska && indivHoursOstrovska
+                  ? `
+                      <li>${indivTitleOstrovska}: ${indivHoursOstrovska + hour}</li>
+                      `
+                  : ''
+              }
           </ul>
-        </mj-text>
+        </mj-text>`
+            : ''
+        }
         <mj-text font-size="18px" line-height="1.5" font-weight="600" padding-bottom="0">
           ${totalTitle}: ${total.total}PLN
         </mj-text>
