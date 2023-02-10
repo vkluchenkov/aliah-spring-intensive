@@ -77,6 +77,42 @@ export const getUserMailContent = (props: UserMailProps) => {
     else return '';
   };
 
+  const workshopsSection =
+    technique || khaligi || mejance
+      ? `
+    <mj-text font-size="18px" line-height="1.5" font-weight="600" padding-top="25px" padding-bottom="0">
+      ${order}
+    </mj-text>
+
+    <mj-text font-size="18px" line-height="1.5" padding="0">
+      <ul>
+    ${technique ? `<li>${ws1Teacher + ': ' + ws1Title}</li>` : ''}
+    ${khaligi ? `<li>${ws2Teacher + ': ' + ws2Title}</li>` : ''}
+    ${mejance ? `<li>${ws3Teacher + ': ' + ws3Title}</li>` : ''}
+      </ul>
+    </mj-text>`
+      : '';
+
+  const indivSection =
+    indivOleynikova || indivOstrovska
+      ? `<mj-text font-size="18px" line-height="1.5" font-weight="600" padding-top="25px" padding-bottom="0">
+      ${indivTitle + ':'}
+        </mj-text>
+        <mj-text font-size="18px" line-height="1.5" padding="0">
+          <ul>
+      ${
+        indivOleynikova && indivHoursOleynikova
+          ? `<li>${indivTitleOleynikova}: ${indivHoursOleynikova + hour}</li>`
+          : ''
+      } ${
+          indivOstrovska && indivHoursOstrovska
+            ? `<li>${indivTitleOstrovska}: ${indivHoursOstrovska + hour}</li>`
+            : ''
+        }
+          </ul>
+        </mj-text>`
+      : '';
+
   const template = `<mjml>
   <mj-head>
     <mj-font
@@ -118,69 +154,10 @@ export const getUserMailContent = (props: UserMailProps) => {
 
         <mj-text font-size="18px" line-height="1.5">${h2}</mj-text>
 
-        <!-- Workshops breakdown -->
-        <mj-text
-          font-size="18px"
-          line-height="1.5"
-          font-weight="600"
-          padding-top="25px"
-          padding-bottom="0"
-          >${order}</mj-text
-        >
+        ${workshopsSection}       
 
-        <mj-text font-size="18px" line-height="1.5" padding="0">
-          <ul>
-            ${
-              technique
-                ? `
-            <li>${ws1Teacher + ': ' + ws1Title}</li>
-            `
-                : ''
-            } ${
-    khaligi
-      ? `
-            <li>${ws2Teacher + ': ' + ws2Title}</li>
-            `
-      : ''
-  } ${
-    mejance
-      ? `
-            <li>${ws3Teacher + ': ' + ws3Title}</li>
-            `
-      : ''
-  }
-          </ul>
-        </mj-text>
+        ${indivSection}        
 
-        ${
-          indivOleynikova || indivOstrovska
-            ? `<mj-text
-          font-size="18px"
-          line-height="1.5"
-          font-weight="600"
-          padding-top="25px"
-          padding-bottom="0"
-          >${indivTitle + ':'}
-        </mj-text>
-        <mj-text font-size="18px" line-height="1.5" padding="0">
-          <ul>
-            ${
-              indivOleynikova && indivHoursOleynikova
-                ? `
-            <li>${indivTitleOleynikova}: ${indivHoursOleynikova + hour}</li>
-            `
-                : ''
-            } ${
-                indivOstrovska && indivHoursOstrovska
-                  ? `
-                      <li>${indivTitleOstrovska}: ${indivHoursOstrovska + hour}</li>
-                      `
-                  : ''
-              }
-          </ul>
-        </mj-text>`
-            : ''
-        }
         <mj-text font-size="18px" line-height="1.5" font-weight="600" padding-bottom="0">
           ${totalTitle}: ${total.total}PLN
         </mj-text>
