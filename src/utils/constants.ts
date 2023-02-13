@@ -12,7 +12,8 @@ export const indivPrice = 250;
 export const indivfee = 140;
 export const processingFee = 0.05;
 
-export const changeDate = new Date('2023-02-14T00:00:01+01:00');
+// End of day
+export const changeDate = new Date('2023-02-14T23:59:01+01:00');
 export const endDate = new Date('2023-03-05T00:00:01+01:00');
 
 export const indivMinHours = 1;
