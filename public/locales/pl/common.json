@@ -6,6 +6,7 @@
   "indiv": "Prywatne zajęcia",
   "indivPrice": "1 godz",
   "hour": "godz",
+  "cancelled": "Warsztat odwołany",
 
   "ws1": {
     "time": "13:00-14:00",

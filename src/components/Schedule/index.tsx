@@ -41,8 +41,8 @@ export const Schedule: React.FC = () => {
             <p className={clsx(event__text, event__time)}>{t('ws1.time')}</p>
             <p className={clsx(event__text, event__teacher)}>{t('ws1.teacher')}</p>
             <p className={clsx(event__text, event__title)}>{t('ws1.title')}</p>
-            <p className={clsx(event__text, event__level)}>({t('ws1.level')})</p>
-            <div className={event__price}>
+            <p className={clsx(event__text, event__level)}>{t('cancelled')}</p>
+            {/* <div className={event__price}>
               <p className={price__content}>
                 {t('until')} {changeDateString} –
                 <span className={price__value}> {kidsPrice1}PLN</span>
@@ -51,8 +51,9 @@ export const Schedule: React.FC = () => {
                 {t('after')} {changeDateString} –
                 <span className={price__value}> {kidsPrice2}PLN</span>
               </p>
-            </div>
+            </div> */}
           </div>
+
           <div className={day__event}>
             <p className={clsx(event__text, event__time)}>{t('ws2.time')}</p>
             <p className={clsx(event__text, event__teacher)}>{t('ws2.teacher')}</p>
