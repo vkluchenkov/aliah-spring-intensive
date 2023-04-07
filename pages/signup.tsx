@@ -128,15 +128,15 @@ const Signup: NextPage = () => {
     const field = ('indivHours' + teacher) as keyof FormFields;
 
     if (
-      formFields[field]! >= indivMinHours &&
-      formFields[field]! < indivMaxHours &&
+      (formFields[field]! as number) >= indivMinHours &&
+      (formFields[field]! as number) < indivMaxHours &&
       action === 'plus'
     )
       setFormFields((prev) => ({ ...prev, [field]: (formFields[field] as number) + 1 }));
 
     if (
-      formFields[field]! > indivMinHours &&
-      formFields[field]! <= indivMaxHours &&
+      (formFields[field]! as number) > indivMinHours &&
+      (formFields[field]! as number) <= indivMaxHours &&
       action === 'minus'
     )
       setFormFields((prev) => ({ ...prev, [field]: (formFields[field] as number) - 1 }));

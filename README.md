@@ -4,6 +4,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 Another iteration of fairly simple multilingual landing page for a dance event â€” with a few complications such as sending emails through Sendinblue integration (emails generated with MJML), saving form submissions in Notion and processing PayPal / Stripe payments.
 
+![Screenshot](./src/screenshots/spring_intensive.jpg)
+
 ## Stack
 
 - HTML5
@@ -17,4 +19,5 @@ Another iteration of fairly simple multilingual landing page for a dance event â
 - i18n support
 
 ## Live deployment
+
 https://intensive.aliah.dance
